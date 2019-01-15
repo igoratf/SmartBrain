@@ -40,14 +40,14 @@ class App extends Component {
 
   onSubmit = () => {
     this.setState({imageUrl: this.state.input});
-    app.models.initModel({id: Clarifai.GENERAL_MODEL, version: "aa7f35c01e0642fda5cf400f543e7c40"})
-      .then(generalModel => {
-        return generalModel.predict(this.state.input);
-      })
-      .then(response => {
-        var concepts = response['outputs'][0]['data']['concepts'];
-        console.log(concepts);
-      });
+    app.models.predict(Clarifai.FACE_DETECT_MODEL, "https://samples.clarifai.com/face-det.jpg").then(
+    function(response) {
+      console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
+    },
+    function(err) {
+      // there was an error
+    }
+  );
   }
 
   render() {
