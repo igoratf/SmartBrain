@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation/Navigation';
+import SignIn from './components/SignIn/SignIn';
+import Register from './/components/Register/Register';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
@@ -32,6 +34,8 @@ class App extends Component {
       input: '',
       imageUrl: '',
       box: {},
+      route: 'signin',
+      isSignedIn: false,
     }
   }
 
@@ -56,6 +60,16 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  onRouteChange = (route) => {
+    if (route === 'signout') {
+      this.state.isSignedIn = false;
+    }
+    else if (route === 'home') {
+      this.state.isSignedIn = true;
+    }
+    this.setState({route: route});
+  }
+
   onSubmit = () => {
     this.setState({imageUrl: this.state.input});
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
@@ -72,12 +86,25 @@ class App extends Component {
       <div className="App">
         <Particles className="particles"
            params={particlesOptions}/>
-        <Navigation />
-        <Logo />
-        <Rank />
-        <ImageLinkForm onInputChange={this.onInputChange}
+        <Navigation onRouteChange={this.onRouteChange}/>
+        { this.state.route === 'home'
+          ?
+          <div>
+            <Logo />
+            <Rank />
+            <ImageLinkForm onInputChange={this.onInputChange}
                        onSubmit={this.onSubmit}/>
-        <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+            <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+          </div> 
+          :
+            (
+            this.state.route === 'signin' 
+            ? <SignIn onRouteChange={this.onRouteChange}/>
+            : <Register onRouteChange={this.onRouteChange} />
+            )
+        }
+        
+          
       </div>
     );
   }
