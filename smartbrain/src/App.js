@@ -58,6 +58,10 @@ class App extends Component {
     this.setState({input: event.target.value});
   }
 
+  onRouteChange = (route) => {
+    this.setState({route: route});
+  }
+
   onSubmit = () => {
     this.setState({imageUrl: this.state.input});
     app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.input)
@@ -74,9 +78,9 @@ class App extends Component {
       <div className="App">
         <Particles className="particles"
            params={particlesOptions}/>
-        <Navigation />
+        <Navigation onRouteChange={this.onRouteChange}/>
         { this.state.route === 'signin'
-          ? <SignIn />
+          ? <SignIn onRouteChange={this.onRouteChange}/>
           : 
           <div>
             <Logo />
