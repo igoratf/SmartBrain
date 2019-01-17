@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Navigation from './components/Navigation/Navigation';
+import SignIn from './components/SignIn/SignIn';
 import Logo from './components/Logo/Logo';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import Rank from './components/Rank/Rank';
@@ -73,6 +74,7 @@ class App extends Component {
         <Particles className="particles"
            params={particlesOptions}/>
         <Navigation />
+        <SignIn />
         <Logo />
         <Rank />
         <ImageLinkForm onInputChange={this.onInputChange}
