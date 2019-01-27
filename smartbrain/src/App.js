@@ -36,6 +36,13 @@ class App extends Component {
       box: {},
       route: 'signin',
       isSignedIn: false,
+      user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+      }
     }
   }
 
@@ -52,6 +59,16 @@ class App extends Component {
     }
   }
 
+  loadUser = (data) => {
+    this.setState({user: {
+      id: data.id,
+      name: data.name,
+      email: data.email,
+      entries: data.entries,
+      joined: data.joined
+    }});
+  }
+
   displayFaceBox = (box) => {
     this.setState({box: box});
   }
@@ -62,10 +79,10 @@ class App extends Component {
 
   onRouteChange = (route) => {
     if (route === 'signout') {
-      this.state.isSignedIn = false;
+      this.setState({isSignedIn: false})
     }
     else if (route === 'home') {
-      this.state.isSignedIn = true;
+      this.setState({isSignedIn: true});
     }
     this.setState({route: route});
   }
@@ -82,25 +99,26 @@ class App extends Component {
   }
 
   render() {
+    const { isSignedIn, imageUrl, route, box, user } = this.state;
     return (
       <div className="App">
         <Particles className="particles"
            params={particlesOptions}/>
-        <Navigation onRouteChange={this.onRouteChange}/>
-        { this.state.route === 'home'
+        <Navigation isSignedIn = {isSignedIn} onRouteChange={this.onRouteChange}/>
+        { route === 'home'
           ?
           <div>
             <Logo />
-            <Rank />
+            <Rank name={user.name} entries={user.entries}/>
             <ImageLinkForm onInputChange={this.onInputChange}
                        onSubmit={this.onSubmit}/>
-            <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
+            <FaceRecognition box={box} imageUrl={imageUrl}/>
           </div> 
           :
             (
-            this.state.route === 'signin' 
-            ? <SignIn onRouteChange={this.onRouteChange}/>
-            : <Register onRouteChange={this.onRouteChange} />
+            route === 'signin' 
+            ? <SignIn loadUser={this.loadUser} onRouteChange={this.onRouteChange}/>
+            : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
             )
         }
         
