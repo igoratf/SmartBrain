@@ -2,6 +2,7 @@
   "name": "smartbrain",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://igoratf.github.io/SmartBrain/",
   "dependencies": {
     "clarifai": "^2.9.0",
     "react": "^16.7.0",
@@ -27,5 +28,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "gh-pages": "^2.0.1"
+  }
 }
