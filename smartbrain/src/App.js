@@ -119,10 +119,11 @@ class App extends Component {
   }
 
   componentWillMount() {
-    fetch('https://enigmatic-crag-49206.herokuapp.com/imageurl', {
+    console.log('mounting');
+    fetch('https://enigmatic-crag-49206.herokuapp.com/', {
             headers: { 'Content-Type': 'application/json' },
       })
-      .then(res => console.log(res.json()))
+      .then(res => console.log(res))
   }
 
   render() {
