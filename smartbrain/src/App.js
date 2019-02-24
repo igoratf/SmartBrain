@@ -118,6 +118,13 @@ class App extends Component {
       });
   }
 
+  componentWillMount() {
+    fetch('https://enigmatic-crag-49206.herokuapp.com/imageurl', {
+            headers: { 'Content-Type': 'application/json' },
+      })
+      .then(res => console.log(res.json()))
+  }
+
   render() {
     const { isSignedIn, imageUrl, route, box, user } = this.state;
     return (
