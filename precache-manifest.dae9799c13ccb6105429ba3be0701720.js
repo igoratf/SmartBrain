@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "fc368fba14e5f92ed397",
+    "revision": "6baf65d60c381dde3728",
     "url": "/SmartBrain/static/css/main.ed075c66.chunk.css"
   },
   {
-    "revision": "fc368fba14e5f92ed397",
-    "url": "/SmartBrain/static/js/main.fc368fba.chunk.js"
+    "revision": "6baf65d60c381dde3728",
+    "url": "/SmartBrain/static/js/main.6baf65d6.chunk.js"
   },
   {
     "revision": "d1f602ec795e818b3f25",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/SmartBrain/static/js/runtime~main.4e3998e4.js"
   },
   {
-    "revision": "ea1c601085cdd1199432cb3b60446c0a",
+    "revision": "43f199611dc5457362ae25a1d9e4b8ff",
     "url": "/SmartBrain/index.html"
   }
 ];
