@@ -88,7 +88,7 @@ class App extends Component {
 
   onPictureSubmit = () => {
     this.setState({ imageUrl: this.state.input });
-    fetch('https://enigmatic-crag-49206.herokuapp.com/imageurl', {
+    fetch('https://smartbrain-node-backend.herokuapp.com/imageurl', {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -99,7 +99,7 @@ class App extends Component {
       .then((response) => {
         if (response) {
           this.displayFaceBox(this.calculateFaceLocation(response));
-          fetch('https://enigmatic-crag-49206.herokuapp.com/image', {
+          fetch('https://smartbrain-node-backend.herokuapp.com/image', {
             method: 'put',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -120,10 +120,9 @@ class App extends Component {
 
   componentWillMount() {
     console.log('mounting');
-    fetch('https://enigmatic-crag-49206.herokuapp.com/', {
+    fetch('https://smartbrain-node-backend.herokuapp.com/', {
             headers: { 'Content-Type': 'application/json' },
       })
-      .then(res => console.log(res))
   }
 
   render() {
